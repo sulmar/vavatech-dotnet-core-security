@@ -216,8 +216,8 @@ public IEnumerable<decimal> GetSalary(string customerName)
 Atak polega na zagnieżdżaniu naszej strony w ramkach.
 
 źródła:
-https://www.keycdn.com/blog/x-frame-options
-https://niebezpiecznik.pl/post/x-frame-options-zacznij-stosowac/
+- https://www.keycdn.com/blog/x-frame-options
+- https://niebezpiecznik.pl/post/x-frame-options-zacznij-stosowac/
 
 ### Rozwiązanie
 
