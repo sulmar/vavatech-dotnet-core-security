@@ -15,6 +15,8 @@ Headers
  public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly IUsersService usersService;
+        
+        private const string authorizationKey = "Authorization";
 
         public BasicAuthenticationHandler(
             IUsersService usersService,
@@ -29,12 +31,12 @@ Headers
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
 
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey(authorizationKey))
             {
                 return AuthenticateResult.Fail("Missing authorization header");
             }
 
-            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
+            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers[authorizationKey]);
             var credentialBytes = Convert.FromBase64String(authHeader.Parameter);
             var credentials = Encoding.UTF8.GetString(credentialBytes).Split(":");
 
