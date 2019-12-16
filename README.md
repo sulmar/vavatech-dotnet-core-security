@@ -1,4 +1,6 @@
 # Uwierzytelnianie
+Weryfikacja tożsamości użytkownika żądającego dostępu do aplikacji.
+
 ## Basic
 
 Headers 
@@ -98,9 +100,41 @@ Headers
 https://github.com/sulmar/dotnet-core-jwt
 
 # Autoryzacja
+Weryfikacja dostępu do zasobów aplikacji.
+
 ## Role
+
+
+~~~ csharp
+ [Authorize(Roles = "Developer, Admin")]
+ [Route("api/[controller]")]
+ [ApiController]
+ public class CustomersController : ControllerBase
+ {
+ }
+~~~
+
+~~~ csharp
+[HttpGet]
+public IActionResult Get()
+{
+    if (this.User.IsInRole("Manager"))
+    {
+        var customers = customerRepository.Get();
+        return Ok(customers);
+    }
+    else
+    {
+        var customers = customerRepository.GetByUserName(this.User.Name);
+        return Ok(customers);
+    }
+}
+~~~
+
 ## Claim
+
 ## Policy
+
 # Zapobieganie atakom
 ## SQL injection
 
@@ -191,6 +225,11 @@ public void Configuration(IAppBuilder app)
     app.UseXfo(options => options.SameOrigin());
 }
 ~~~
+
+## Sanityzacja
+
+HtmlSanitizer
+https://github.com/mganss/HtmlSanitizer
 
 ## Ukrywanie informacji
 
