@@ -132,6 +132,15 @@ public IActionResult Get()
 ~~~
 
 ## Claim
+~~~ csharp
+ClaimsIdentity identity = new ClaimsIdentity("Basic");
+
+ identity.AddClaim(new Claim(ClaimTypes.HomePhone, "555-444-333"));
+ identity.AddClaim(new Claim(ClaimTypes.Role, "Developer")); 
+ identity.AddClaim(new Claim(ClaimTypes.Role, "Trainer")); 
+
+ ClaimsPrincipal principal = new ClaimsPrincipal(identity);
+~~~
 
 ## Policy
 
