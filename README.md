@@ -166,6 +166,32 @@ public IEnumerable<decimal> GetSalary(string customerName)
 ## Cross-site scripting (XSS)
 ## Cross-site Request Forgery (CSRF)
 ## Server-side Request Forgery (SSRF)
+
+## Clickjacking 
+
+### Atak
+Atak polega na zagnieżdżaniu naszej strony w ramkach.
+
+źródła:
+https://www.keycdn.com/blog/x-frame-options
+https://niebezpiecznik.pl/post/x-frame-options-zacznij-stosowac/
+
+### Rozwiązanie
+
+Dodanie nagłówka do odpowiedzi w celu zablokowania ramek.
+
+~~~
+X-Frame-Options: deny - tylko strony z tej samej domeny mogą stosować ramki
+X-Frame-Options: sameorigin - żadna strona nie może wrzucić w ramkę tej strony
+~~~
+
+~~~ csharp
+public void Configuration(IAppBuilder app)
+{
+    app.UseXfo(options => options.SameOrigin());
+}
+~~~
+
 ## Ukrywanie informacji
 
 ~~~ csharp
