@@ -79,7 +79,24 @@ Startup.cs
 ~~~
 
 ## OAuth 2.0
+
+Headers 
+
+| Key   | Value  |
+|---|---|
+| Authorization | Bearer {token}  |
+
+
 ## JWT
+
+Headers 
+
+| Key   | Value  |
+|---|---|
+| Authorization | Bearer {jwt_token}  |
+
+https://github.com/sulmar/dotnet-core-jwt
+
 # Autoryzacja
 ## Role
 ## Claim
